@@ -1,0 +1,42 @@
+class Ball {
+  float x, y;
+  float vx, vy;
+  float radius;
+  color c;
+  Ball(color c1) {
+    x=random(width);
+    y=random(height);
+    radius=20;
+    vx=3;
+    vy=2;
+    c=c1;
+  }
+  void draw() {
+    fill(c);
+    noStroke();
+    ellipse(x, y, radius*2, radius*2);
+  }
+  void step() {
+    x=x+vx;
+    y=y+vy;
+    if (x<radius||x>width-radius) {
+      vx=-vx;
+    }
+    if (y<radius||y>height-radius) {
+      vy=-vy;
+    }
+  }
+}
+Ball a,b; // for more balls use arraylist
+void setup(){
+  size(500,500);
+  b=new Ball(color(255,0,0));
+  a=new Ball(color(0,255,0));
+}
+void draw(){
+  background(255);
+  a.draw();
+  a.step();
+  b.draw();
+  b.step();
+}
